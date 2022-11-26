@@ -57,7 +57,7 @@ if pg.display.get_init() == True:
                 elif event.key == pg.K_LEFT:
                     i-=20
 
-            if event == pg.QUIT:
+            if event.type == pg.QUIT:
                 sys.exit(1)
 
 pg.display.quit()
