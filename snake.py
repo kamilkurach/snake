@@ -27,14 +27,25 @@ import random
 
 # snake = SnakeBody(3)
 
+def display_score_bar(score):
+    surface = pg.Surface(size=(640, 45))
+    surface.fill((63, 150, 102))
+    window.blit(surface, (0, 0))
+    font = pg.font.SysFont(None, 40)
+    img = font.render('SCORE: {0}'.format(score), True, (144, 210, 245))
+    window.blit(img, (240, 10))
+
+pg.init()
 pg.display.init()
 
 if pg.display.get_init() == True:
-    window = pg.display.set_mode(size=(640, 480), flags=0, depth=0, display=0, vsync=0)
-    surface = pg.Surface(size=(640, 480))
-    surface.fill((250, 250, 250))
+    window = pg.display.set_mode(size=(640, 520), flags=0, depth=0, display=0, vsync=0)
+    surface = pg.Surface(size=(640, 520))
+    surface.fill((202, 201, 245))
     window.blit(surface, (0, 0))
+
     pg.display.update()
+
     i = 1
     j = 1
     
@@ -46,9 +57,9 @@ if pg.display.get_init() == True:
     k_left = False
 
     while True:
-        print(k_up, k_down)
+        
         time.sleep(0.01)
-        surface.fill((250, 250, 250))
+        surface.fill((202, 201, 245))
 
         if k_up == True:
             j-=2
@@ -65,6 +76,8 @@ if pg.display.get_init() == True:
         pg.draw.rect(surface, (50, 50, 250), pg.Rect((snake_pos_x, snake_pos_y), (30, 30)))
         pg.draw.rect(surface, (50, 250, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (30, 30)))
         window.blit(surface, (0, 0))
+
+        display_score_bar(0)
         pg.display.update()
         
         for event in pg.event.get():
