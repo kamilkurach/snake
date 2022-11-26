@@ -48,7 +48,7 @@ if pg.display.get_init() == True:
 
     i = 1
     j = 1
-    
+    score = 0
     fruit_pos_x = random.randint(150, 400)
     fruit_pos_y = random.randint(150, 400)
     k_up = False
@@ -73,11 +73,17 @@ if pg.display.get_init() == True:
         snake_pos_x = 100+i
         snake_pos_y = 100+j
         
-        pg.draw.rect(surface, (50, 50, 250), pg.Rect((snake_pos_x, snake_pos_y), (30, 30)))
-        pg.draw.rect(surface, (50, 250, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (30, 30)))
+        snake = pg.draw.rect(surface, (50, 50, 250), pg.Rect((snake_pos_x, snake_pos_y), (30, 30)))
+        fruit = pg.draw.rect(surface, (50, 200, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (30, 30)))
         window.blit(surface, (0, 0))
 
-        display_score_bar(0)
+        if snake.colliderect(fruit) == True:
+            score+=1
+            fruit_pos_x = random.randint(150, 400)
+            fruit_pos_y = random.randint(150, 400)
+            fruit = pg.draw.rect(surface, (50, 250, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (30, 30)))
+
+        display_score_bar(score)
         pg.display.update()
         
         for event in pg.event.get():
