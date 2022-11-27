@@ -73,8 +73,10 @@ if pg.display.get_init() == True:
         snake_pos_x = 100+i
         snake_pos_y = 100+j
         
+        border = pg.draw.rect(surface, (63, 150, 102), pg.Rect(0, 40, 640, 480), 5)
         snake = pg.draw.rect(surface, (50, 50, 250), pg.Rect((snake_pos_x, snake_pos_y), (30, 30)))
         fruit = pg.draw.rect(surface, (50, 200, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
+        
         window.blit(surface, (0, 0))
 
         if snake.colliderect(fruit) == True:
