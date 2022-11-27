@@ -73,7 +73,7 @@ if pg.display.get_init() == True:
         snake_pos_x = 100+i
         snake_pos_y = 100+j
         
-        border = pg.draw.rect(surface, (63, 150, 102), pg.Rect(0, 40, 640, 480), 5)
+        border = pg.draw.rect(surface, (202, 201, 245), pg.Rect(25, 70, 590, 425), 5)
         snake = pg.draw.rect(surface, (50, 50, 250), pg.Rect((snake_pos_x, snake_pos_y), (30, 30)))
         fruit = pg.draw.rect(surface, (50, 200, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
         
@@ -84,6 +84,18 @@ if pg.display.get_init() == True:
             fruit_pos_x = random.randint(150, 400)
             fruit_pos_y = random.randint(150, 400)
             fruit = pg.draw.rect(surface, (50, 250, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
+
+        
+        if snake.colliderect(border) == False:
+            font = pg.font.SysFont(None, 50)
+            img = font.render('GAME OVER', True, (144, 210, 245))
+            surface.fill((0, 0, 0))
+            window.blit(surface, (0, 0))
+            window.blit(img, (200, 220))
+            pg.display.update()
+            time.sleep(3)
+            sys.exit(1)
+
 
         display_score_bar(score)
         pg.display.update()
