@@ -88,22 +88,22 @@ if pg.display.get_init() == True:
         
         for event in pg.event.get():
             if event.type == pg.KEYDOWN:
-                if event.key == pg.K_UP:
+                if k_down != True and event.key == pg.K_UP:
                     k_up = True
                     k_down = False
                     k_right = False
                     k_left = False
-                elif event.key == pg.K_DOWN:
+                elif k_up != True and event.key == pg.K_DOWN:
                     k_up = False
                     k_down = True
                     k_right = False
                     k_left = False
-                elif event.key == pg.K_RIGHT:
+                elif k_left != True and event.key == pg.K_RIGHT:
                     k_up = False
                     k_down = False
                     k_right = True
                     k_left = False
-                elif event.key == pg.K_LEFT:
+                elif k_right != True and event.key == pg.K_LEFT:
                     k_up = False
                     k_down = False
                     k_right = False
