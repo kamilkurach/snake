@@ -91,13 +91,16 @@ if pg.display.get_init() == True:
         
         if snake.colliderect(border) == False:
             pg.mixer.music.stop()
+            time.sleep(0.5)
+            music = pg.mixer.music.load('Game-Over.mp3')
+            pg.mixer.music.play(1)
             font = pg.font.SysFont(None, 50)
             img = font.render('GAME OVER', True, (144, 210, 245))
             surface.fill((0, 0, 0))
             window.blit(surface, (0, 0))
             window.blit(img, (200, 220))
             pg.display.update()
-            time.sleep(3)
+            time.sleep(6)
             sys.exit(1)
 
 
