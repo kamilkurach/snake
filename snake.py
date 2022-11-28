@@ -101,7 +101,7 @@ if pg.display.get_init() == True:
             img = font.render('GAME OVER', True, (144, 210, 245))
             surface.fill((0, 0, 0))
             window.blit(surface, (0, 0))
-            window.blit(img, (200, 220))
+            window.blit(img, (200, 240))
             pg.display.update()
             time.sleep(6)
             sys.exit(1)
