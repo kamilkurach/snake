@@ -57,7 +57,9 @@ if pg.display.get_init() == True:
     k_right = True
     k_left = False
 
-    music = pg.mixer.music.load('Snake-Song-2.mp3')
+    pg.mixer.music.load('Snake-Song-2.mp3')
+    capture_sound = pg.mixer.Sound('Snake-Capture-Fruit.mp3')
+    pg.mixer.music.set_volume(0.6)
     pg.mixer.music.play(-1)
 
     while True:
@@ -83,6 +85,7 @@ if pg.display.get_init() == True:
         window.blit(surface, (0, 0))
 
         if snake.colliderect(fruit) == True:
+            pg.mixer.Sound.play(capture_sound)
             score+=1
             fruit_pos_x = random.randint(150, 400)
             fruit_pos_y = random.randint(150, 400)
