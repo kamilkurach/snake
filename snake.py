@@ -2,6 +2,7 @@ import pygame as pg
 import sys
 import time
 import random
+import os
 
 
 # class SnakeBody:
@@ -56,8 +57,10 @@ if pg.display.get_init() == True:
     k_right = True
     k_left = False
 
+    music = pg.mixer.music.load('Snake-Song.mp3')
+    pg.mixer.music.play(-1)
+
     while True:
-        
         time.sleep(0.01)
         surface.fill((202, 201, 245))
 
@@ -87,6 +90,7 @@ if pg.display.get_init() == True:
 
         
         if snake.colliderect(border) == False:
+            pg.mixer.music.stop()
             font = pg.font.SysFont(None, 50)
             img = font.render('GAME OVER', True, (144, 210, 245))
             surface.fill((0, 0, 0))
