@@ -57,7 +57,7 @@ if pg.display.get_init() == True:
     k_right = True
     k_left = False
 
-    music = pg.mixer.music.load('Snake-Song.mp3')
+    music = pg.mixer.music.load('Snake-Song-2.mp3')
     pg.mixer.music.play(-1)
 
     while True:
