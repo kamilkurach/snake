@@ -85,7 +85,7 @@ if pg.display.get_init() == True:
             if ii == len(arr)-1:
                 snake_head = pg.draw.rect(surface, (80, 145, 250), pg.Rect((e[0], e[1]), (25, 25)))
             else:
-                if ii%2 == 0:
+                if ii%4 == 0:
                     pg.draw.rect(surface, (42, 122, 250), pg.Rect((e[0], e[1]), (25, 25)))
                 else:
                     pg.draw.rect(surface, (83, 93, 110), pg.Rect((e[0], e[1]), (25, 25)))
