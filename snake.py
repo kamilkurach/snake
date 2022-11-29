@@ -57,7 +57,7 @@ if pg.display.get_init() == True:
     k_right = True
     k_left = False
 
-    pg.mixer.music.load('Snake-Song-2.mp3')
+    pg.mixer.music.load('Snake-Song-2-E.mp3')
     capture_sound = pg.mixer.Sound('Snake-Capture-Fruit.mp3')
     pg.mixer.music.set_volume(0.6)
     pg.mixer.music.play(-1)
