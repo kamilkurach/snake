@@ -61,38 +61,48 @@ if pg.display.get_init() == True:
     capture_sound = pg.mixer.Sound('Snake-Capture-Fruit.mp3')
     pg.mixer.music.set_volume(0.6)
     pg.mixer.music.play(-1)
-
+    arr = []
+    snake_length = 20
     while True:
         time.sleep(0.01)
         surface.fill((202, 201, 245))
 
         if k_up == True:
-            j-=2
+            j-=3
         elif k_down == True:
-            j+=2
+            j+=3
         elif k_right == True:
-            i+=2
+            i+=3
         elif k_left == True:
-            i-=2
+            i-=3
 
         snake_pos_x = 100+i
         snake_pos_y = 100+j
-        
+        arr.append([snake_pos_x, snake_pos_y])
         border = pg.draw.rect(surface, (202, 201, 245), pg.Rect(25, 70, 590, 425), 5)
-        snake = pg.draw.rect(surface, (50, 50, 250), pg.Rect((snake_pos_x, snake_pos_y), (30, 30)))
+        
+        for ii, e in enumerate(arr):
+            if ii == len(arr)-1:
+                snake_head = pg.draw.rect(surface, (50, 50, 250), pg.Rect((e[0], e[1]), (30, 30)))
+            else:
+                pg.draw.rect(surface, (50, 50, 250), pg.Rect((e[0], e[1]), (30, 30)))
+            if len(arr) > snake_length:
+                arr.pop(0)
+ 
         fruit = pg.draw.rect(surface, (50, 200, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
         
         window.blit(surface, (0, 0))
 
-        if snake.colliderect(fruit) == True:
+        if snake_head.colliderect(fruit) == True:
             pg.mixer.Sound.play(capture_sound)
             score+=1
+            snake_length+=10
             fruit_pos_x = random.randint(150, 400)
             fruit_pos_y = random.randint(150, 400)
             fruit = pg.draw.rect(surface, (50, 250, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
 
         
-        if snake.colliderect(border) == False:
+        if snake_head.colliderect(border) == False:
             pg.mixer.music.stop()
             time.sleep(0.5)
             music = pg.mixer.music.load('Game-Over.mp3')
@@ -109,7 +119,7 @@ if pg.display.get_init() == True:
 
         display_score_bar(score)
         pg.display.update()
-        
+
         for event in pg.event.get():
             if event.type == pg.KEYDOWN:
                 if k_down != True and event.key == pg.K_UP:
