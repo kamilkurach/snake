@@ -92,7 +92,7 @@ if pg.display.get_init() == True:
             if len(arr) > snake_length:
                 arr.pop(0)
  
-        fruit = pg.draw.rect(surface, (50, 200, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
+        fruit = pg.draw.rect(surface, (130, 13, 29), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
         
         window.blit(surface, (0, 0))
 
@@ -102,7 +102,7 @@ if pg.display.get_init() == True:
             snake_length+=10
             fruit_pos_x = random.randint(150, 400)
             fruit_pos_y = random.randint(150, 400)
-            fruit = pg.draw.rect(surface, (50, 250, 250), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
+            fruit = pg.draw.rect(surface, (130, 13, 29), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
 
         
         if snake_head.colliderect(border) == False:
