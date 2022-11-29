@@ -116,6 +116,21 @@ if pg.display.get_init() == True:
             time.sleep(6)
             sys.exit(1)
 
+        for e in arr[:len(arr)-15]:
+            if e[0] == snake_head.center[0] and e[1] == snake_head.center[1]:
+                pg.mixer.music.stop()
+                time.sleep(0.5)
+                music = pg.mixer.music.load('Game-Over.mp3')
+                pg.mixer.music.play(1)
+                font = pg.font.SysFont(None, 50)
+                img = font.render('GAME OVER', True, (144, 210, 245))
+                surface.fill((0, 0, 0))
+                window.blit(surface, (0, 0))
+                window.blit(img, (200, 240))
+                pg.display.update()
+                time.sleep(6)
+                sys.exit(1)
+
 
         display_score_bar(score)
         pg.display.update()
