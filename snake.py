@@ -83,9 +83,12 @@ if pg.display.get_init() == True:
         
         for ii, e in enumerate(arr):
             if ii == len(arr)-1:
-                snake_head = pg.draw.rect(surface, (50, 50, 250), pg.Rect((e[0], e[1]), (30, 30)))
+                snake_head = pg.draw.rect(surface, (80, 145, 250), pg.Rect((e[0], e[1]), (30, 30)))
             else:
-                pg.draw.rect(surface, (50, 50, 250), pg.Rect((e[0], e[1]), (30, 30)))
+                if ii%2 == 0:
+                    pg.draw.rect(surface, (42, 122, 250), pg.Rect((e[0], e[1]), (30, 30)))
+                else:
+                    pg.draw.rect(surface, (83, 93, 110), pg.Rect((e[0], e[1]), (30, 30)))
             if len(arr) > snake_length:
                 arr.pop(0)
  
