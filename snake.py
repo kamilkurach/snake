@@ -57,8 +57,8 @@ if pg.display.get_init() == True:
     k_right = True
     k_left = False
 
-    pg.mixer.music.load('Snake-Song-2-E.mp3')
-    capture_sound = pg.mixer.Sound('Snake-Capture-Fruit.mp3')
+    pg.mixer.music.load('sound/Snake-Song-2-E.mp3')
+    capture_sound = pg.mixer.Sound('sound/Snake-Capture-Fruit.mp3')
     pg.mixer.music.set_volume(0.6)
     pg.mixer.music.play(-1)
     arr = []
@@ -108,7 +108,7 @@ if pg.display.get_init() == True:
         if snake_head.colliderect(border) == False:
             pg.mixer.music.stop()
             time.sleep(0.5)
-            music = pg.mixer.music.load('Game-Over.mp3')
+            music = pg.mixer.music.load('sound/Game-Over.mp3')
             pg.mixer.music.play(1)
             font = pg.font.SysFont(None, 50)
             img = font.render('GAME OVER', True, (144, 210, 245))
@@ -123,7 +123,7 @@ if pg.display.get_init() == True:
             if e[0] == snake_head.center[0] and e[1] == snake_head.center[1]:
                 pg.mixer.music.stop()
                 time.sleep(0.5)
-                music = pg.mixer.music.load('Game-Over.mp3')
+                music = pg.mixer.music.load('sound/Game-Over.mp3')
                 pg.mixer.music.play(1)
                 font = pg.font.SysFont(None, 50)
                 img = font.render('GAME OVER', True, (144, 210, 245))
