@@ -8,4 +8,12 @@
 
 ### Music and sound effects made in BeepBox.co
 
-### Needs refactoring :)
+### How to run (on Linux):
+
+``` 
+1) git clone https://github.com/yacotaco/snake.git
+
+2) cd snake/
+
+3) dist/snake
+```
