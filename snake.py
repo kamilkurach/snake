@@ -135,6 +135,13 @@ if pg.display.get_init() == True:
                 fruit_pos_y = random.randint(150, 400)
                 fruit = pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20))
                 arr_fruit.append([fruit, e])
+        elif len(COLLECTED_WORD) == len(WORD) and COLLECTED_WORD != WORD:
+            COLLECTED_WORD = ""
+            for e in WORD:
+                fruit_pos_x = random.randint(150, 400)
+                fruit_pos_y = random.randint(150, 400)
+                fruit = pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20))
+                arr_fruit.append([fruit, e])
 
 
         if snake_head.colliderect(border) == False:
