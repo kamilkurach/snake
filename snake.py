@@ -28,13 +28,18 @@ import os
 
 # snake = SnakeBody(3)
 
+WORD = "RADAR"
+COLLECTED_WORD = ""
+
 def display_score_bar(score):
     surface = pg.Surface(size=(640, 45))
     surface.fill((63, 150, 102))
     window.blit(surface, (0, 0))
     font = pg.font.SysFont(None, 40)
     img = font.render('SCORE: {0}'.format(score), True, (144, 210, 245))
-    window.blit(img, (240, 10))
+    window.blit(img, (440, 10))
+    img = font.render('{0}'.format(WORD), True, (130, 13, 29))
+    window.blit(img, (40, 10))
 
 pg.init()
 pg.display.init()
@@ -44,14 +49,21 @@ if pg.display.get_init() == True:
     surface = pg.Surface(size=(640, 520))
     surface.fill((202, 201, 245))
     window.blit(surface, (0, 0))
-
     pg.display.update()
 
     i = 1
     j = 1
     score = 0
-    fruit_pos_x = random.randint(150, 400)
-    fruit_pos_y = random.randint(150, 400)
+    # fruit_pos_x = random.randint(150, 400)
+    # fruit_pos_y = random.randint(150, 400)
+    arr_fruit = []
+    for e in WORD:
+        fruit_pos_x = random.randint(150, 400)
+        fruit_pos_y = random.randint(150, 400)
+        fruit = pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20))
+        arr_fruit.append([fruit, e])
+
+    
     k_up = False
     k_down = False
     k_right = True
@@ -80,6 +92,14 @@ if pg.display.get_init() == True:
         snake_pos_y = 100+j
         arr.append([snake_pos_x, snake_pos_y])
         border = pg.draw.rect(surface, (202, 201, 245), pg.Rect(25, 70, 590, 425), 5)
+        for a in arr_fruit:
+            rect = a[0]
+            e = a[1]
+            pg.draw.rect(surface, (130, 13, 29), rect)
+            font = pg.font.SysFont(None, 30)
+            img = font.render('{0}'.format(e), True, (0, 150, 100))
+            surface.blit(img, (rect.center[0]-7, rect.center[1]-7))
+            
         
         for ii, e in enumerate(arr):
             if ii == len(arr)-1:
@@ -91,20 +111,32 @@ if pg.display.get_init() == True:
                     pg.draw.rect(surface, (83, 93, 110), pg.Rect((e[0], e[1]), (25, 25)))
             if len(arr) > snake_length:
                 arr.pop(0)
- 
-        fruit = pg.draw.rect(surface, (130, 13, 29), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
-        
+   
         window.blit(surface, (0, 0))
 
-        if snake_head.colliderect(fruit) == True:
-            pg.mixer.Sound.play(capture_sound)
-            score+=1
-            snake_length+=10
-            fruit_pos_x = random.randint(150, 400)
-            fruit_pos_y = random.randint(150, 400)
-            fruit = pg.draw.rect(surface, (130, 13, 29), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
+        for fruit in arr_fruit:
+            if snake_head.colliderect(fruit[0]) == True:
+                idx = arr_fruit.index(fruit)
+                arr_fruit.pop(idx)
+                pg.mixer.Sound.play(capture_sound)
+                # score+=1
+                snake_length+=10
+                COLLECTED_WORD = COLLECTED_WORD + fruit[1]
+                # fruit_pos_x = random.randint(150, 400)
+                # fruit_pos_y = random.randint(150, 400)
+                # fruit = pg.draw.rect(surface, (130, 13, 29), pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20)))
 
-        
+        if len(COLLECTED_WORD) == len(WORD) and COLLECTED_WORD == WORD:
+            score+=1
+            COLLECTED_WORD = ""
+            WORD = "AIRPLANE"
+            for e in WORD:
+                fruit_pos_x = random.randint(150, 400)
+                fruit_pos_y = random.randint(150, 400)
+                fruit = pg.Rect((fruit_pos_x, fruit_pos_y), (20, 20))
+                arr_fruit.append([fruit, e])
+
+
         if snake_head.colliderect(border) == False:
             pg.mixer.music.stop()
             time.sleep(0.5)
