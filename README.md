@@ -28,4 +28,4 @@
 
 3) run snake.exe file
 ```
-Enjoy! (but do not look at code, it needs refactoring)
+Enjoy!
