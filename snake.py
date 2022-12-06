@@ -86,19 +86,20 @@ class MainWindow:
         self.window.blit(img, (200, 240))
 
     def draw_snake(self, snake):
+        snake_size = (25, 25)
         snake_arr = snake.get_snake_arr()
         for i, e in enumerate(snake_arr):
             if i == len(snake_arr)-1:
                 snake_head = pg.draw.rect(
-                    self.game_area_surface, (80, 145, 250), pg.Rect((e[0], e[1]), (25, 25)))
+                    self.game_area_surface, (80, 145, 250), pg.Rect((e[0], e[1]), snake_size))
                 snake.set_snake_head(snake_head)
             else:
                 if i % 4 == 0:
                     pg.draw.rect(self.game_area_surface, (42, 122,
-                                 250), pg.Rect((e[0], e[1]), (25, 25)))
+                                 250), pg.Rect((e[0], e[1]), snake_size))
                 else:
                     pg.draw.rect(self.game_area_surface, (83, 93,
-                                 110), pg.Rect((e[0], e[1]), (25, 25)))
+                                 110), pg.Rect((e[0], e[1]), snake_size))
             if len(snake_arr) > snake.get_snake_length():
                 snake.pop_snake_arr()
 
