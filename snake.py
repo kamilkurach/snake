@@ -67,14 +67,14 @@ class MainWindow:
         pg.init()
         pg.display.init()
 
-    def display_score_bar(self, score=0):
+    def draw_display_score_bar(self, score=0):
         self.score_surface.fill((63, 150, 102))
         self.window.blit(self.score_surface, (0, 0))
         font = pg.font.SysFont(None, 40)
         img = font.render('SCORE: {0}'.format(score), True, (144, 210, 245))
         self.window.blit(img, (240, 10))
 
-    def game_area(self):
+    def draw_game_area(self):
         self.game_area_surface.fill((202, 201, 245))
         self.window.blit(self.game_area_surface, (0, 40))
 
@@ -218,8 +218,8 @@ class GameLoop:
 
     def init_window(self):
         self.main_window.init_main_window()
-        self.main_window.game_area()
-        self.main_window.display_score_bar()
+        self.main_window.draw_game_area()
+        self.main_window.draw_display_score_bar()
 
     def main(self):
         self.init_window()
@@ -233,9 +233,9 @@ class GameLoop:
 
                 self.position_update(self.snake)
 
-                self.main_window.game_area()
+                self.main_window.draw_game_area()
 
-                self.main_window.display_score_bar(self.get_score())
+                self.main_window.draw_display_score_bar(self.get_score())
 
                 self.main_window.draw_snake(self.snake)
 
